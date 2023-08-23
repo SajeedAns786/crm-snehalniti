@@ -25,7 +25,18 @@ if (isset($_POST['submit'])) {
     //If Input Data Is Same To Agencies Table Data Then Head To Agent Dashboard Page
     $_SESSION['user_id'] = $row['id'];
     $_SESSION['user_role'] = $row['type'];
-    header('location:../dashboard.php');
+   // header('location:../dashboard.php');
+   // Check the user's role
+if ($_SESSION['user_role'] === 'admin'){
+  header('location:../admindashboard.php');
+}elseif ($_SESSION['user_role'] === 'teamleader') {
+  header('location:../tldashboard.php');
+}elseif ($_SESSION['user_role'] === 'telecaller'){
+  header('location:../tcdashboard.php');
+}else {
+    // Handle unknown roles or unauthorized access
+    echo "Unauthorized access.";
+}
   } else {
     //If Input Data Is Not Same To Agencies Table Data Then Head To Agent Register Page
     header('location:../index.php?message=Invalid Username Or Password');

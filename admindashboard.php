@@ -6,11 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit();
 }
-
-// Check the user's role
-if ($_SESSION['user_role'] === 'admin') {
-    $dashboardContent = 
-    "<html>
+?>
+<html>
     <head>
         <title>Admin Dashboard</title>
     </head>
@@ -26,16 +23,6 @@ if ($_SESSION['user_role'] === 'admin') {
         </ul>
         <p><a href='admin_tasks.php'>Go to Admin Tasks</a></p>
     </body>
-    </html>";
+    </html>
 
-    echo $dashboardContent;
-    
-} elseif ($_SESSION['user_role'] === 'teamleader') {
-    echo "hello teamleader";
-}elseif ($_SESSION['user_role'] === 'telecaller') {
-    echo "hello telecaller";
-} else {
-    // Handle unknown roles or unauthorized access
-    echo "Unauthorized access.";
-}
-?>
+   
